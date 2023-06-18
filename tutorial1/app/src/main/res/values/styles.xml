@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="MySwitchStyle" parent="Base.Widget.AppCompat.CompoundButton.Switch">
+        <item name="android:thumb">@drawable/toggle_switch_thumb</item>
+        <item name="android:track">@drawable/toggle_switch_track</item>
+    </style>
+
+    <style name="DialogTheme" parent="@style/Theme.Design.NoActionBar">
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+</resources>

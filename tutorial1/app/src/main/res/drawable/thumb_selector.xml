@@ -1,0 +1,19 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Thumb in normal state -->
+    <item android:state_pressed="false">
+        <layer-list>
+            <!-- Thumb background -->
+            <item android:drawable="@drawable/shadow_122618"/>
+        </layer-list>
+    </item>
+
+    <!-- Thumb in pressed state -->
+    <item android:state_pressed="true">
+        <layer-list>
+            <!-- Thumb background -->
+            <item android:drawable="@drawable/shadow_122640"/>
+        </layer-list>
+    </item>
+
+</selector>
