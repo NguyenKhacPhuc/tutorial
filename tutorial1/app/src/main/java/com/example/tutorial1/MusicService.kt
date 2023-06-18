@@ -1,9 +1,12 @@
 package com.example.tutorial1
 
+import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.Service
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.media.MediaPlayer
 import android.os.Binder
 import android.os.Build
@@ -49,17 +52,20 @@ class MusicService : Service() {
                 NotificationManager::class.java
             )
             notificationManager.createNotificationChannel(channel)
+
+            val bitmap: Bitmap = BitmapFactory.decodeResource(resources, R.drawable.colorful)
+            // Create the notification
+            val builder: Notification = Notification.Builder(this, "channel_id")
+                .setSmallIcon(R.drawable.arrow_back_24)
+                .setContentTitle("PhucNK1")
+                .setContentText("Media ")
+                .setLargeIcon(bitmap)
+                .setStyle(Notification.MediaStyle())
+                .build()
+
+            // Start the service as a foreground service
+            startForeground(2, builder)
         }
-
-        // Create the notification
-        val builder: NotificationCompat.Builder = NotificationCompat.Builder(this, "channel_id")
-            .setContentTitle("Music Player")
-            .setContentText("Playing Music")
-            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-            .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
-
-        // Start the service as a foreground service
-        startForeground(1, builder.build())
     }
 
     override fun onBind(intent: Intent?): IBinder {
