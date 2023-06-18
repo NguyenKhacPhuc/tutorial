@@ -5,6 +5,7 @@ import android.app.NotificationManager
 import android.app.Service
 import android.content.Intent
 import android.media.MediaPlayer
+import android.os.Binder
 import android.os.Build
 import android.os.IBinder
 import androidx.core.app.NotificationCompat
@@ -12,12 +13,16 @@ import androidx.core.app.NotificationCompat
 
 class MusicService : Service() {
     private var mediaPlayer: MediaPlayer? = null
+    private val binder: IBinder = MusicBinder()
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+        return START_NOT_STICKY
+    }
+
+    fun startMusic() {
         mediaPlayer = MediaPlayer.create(this, R.raw.sound)
         mediaPlayer!!.start()
         createNotification()
-        return START_NOT_STICKY
     }
 
     override fun onDestroy() {
@@ -57,7 +62,12 @@ class MusicService : Service() {
         startForeground(1, builder.build())
     }
 
-    override fun onBind(intent: Intent?): IBinder? {
-        return null
+    override fun onBind(intent: Intent?): IBinder {
+        return binder
+    }
+
+    inner class MusicBinder: Binder() {
+        fun getService() = this@MusicService
+
     }
 }

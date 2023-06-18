@@ -2,4 +2,5 @@
 <resources>
     <dimen name="minWidth">34dp</dimen>
     <dimen name="minHeight">24dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 </resources>
